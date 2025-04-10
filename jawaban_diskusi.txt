@@ -1,0 +1,40 @@
+# Jawaban Diskusi Modul 5 - Sistem Multimedia
+
+1. **Keunggulan & Kelemahan Librosa vs Scipy dalam Membaca File Audio**  
+   - **Librosa:**  
+     ✅ Mendukung berbagai format audio (WAV, MP3, FLAC, dll.).  
+     ✅ Memungkinkan manipulasi audio seperti pengubahan pitch, tempo, dan ekstraksi fitur.  
+     ❌ Lebih lambat dibanding Scipy karena melakukan preprocessing tambahan.  
+
+   - **Scipy:**  
+     ✅ Lebih cepat dalam membaca file WAV karena tidak ada preprocessing tambahan.  
+     ❌ Hanya mendukung format WAV.  
+
+2. **Mengapa Penting Menampilkan Waveform dalam Analisis Audio?**  
+   - Untuk melihat struktur dan karakteristik suara secara visual.  
+   - Membantu mendeteksi bagian penting dalam audio, seperti noise atau suara yang terputus.  
+   - Berguna dalam pengolahan sinyal untuk pemrosesan lebih lanjut.  
+
+3. **Bagaimana Perubahan Sample Rate Mempengaruhi Representasi Waveform?**  
+   - **Sample rate tinggi** → Detail lebih baik, tetapi file lebih besar.  
+   - **Sample rate rendah** → Detail kurang jelas, tetapi lebih ringan untuk komputasi.  
+   - Perubahan sample rate dapat menyebabkan distorsi atau kehilangan informasi suara.  
+
+4. **Apa Dampak Noise dalam Waveform, dan Bagaimana Cara Menguranginya?**  
+   - Noise membuat sinyal sulit dianalisis dan bisa mengganggu kejelasan audio.  
+   - Cara menguranginya:  
+     - **Filter low-pass atau high-pass** untuk menghilangkan frekuensi noise tertentu.  
+     - **Fourier Transform** untuk memisahkan noise dari sinyal utama.  
+     - **Wavelet Denoising** untuk mengurangi noise tanpa merusak sinyal utama.  
+
+5. **Metode Lain untuk Mengukur Durasi File Audio Selain yang Disebutkan?**  
+   - **Menggunakan FFmpeg (Command Line):**  
+     ```bash
+     ffmpeg -i audio_example.wav 2>&1 | grep "Duration"
+     ```
+   - **Menggunakan Mutagen (Library Python):**  
+     ```python
+     from mutagen.mp3 import MP3
+     audio = MP3("audio_example.mp3")
+     print(f"Durasi: {audio.info.length:.2f} detik")
+     ```
